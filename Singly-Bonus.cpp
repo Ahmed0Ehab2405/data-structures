@@ -15,16 +15,21 @@ public:
     }
 
     void insert(int value) {
-        Node* newNode = new Node{value, nullptr};
+        Node* newNode = new Node;
+        newNode->data = value;
+        newNode->next = nullptr;
+
         if (!head || value < head->data) {
             newNode->next = head;
             head = newNode;
             return;
         }
+
         Node* current = head;
         while (current->next && current->next->data < value) {
             current = current->next;
         }
+
         newNode->next = current->next;
         current->next = newNode;
     }
